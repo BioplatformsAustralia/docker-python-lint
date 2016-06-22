@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+  linter:
+    build:
+      context: ./
+      args:
+        ARG_FLAKE8_VERSION: 2.5.4
+        ARG_YAPF_VERSION: 0.9.0
+        ARG_CLOSURE_LINTER_VERSION: 2.3.13
+        ARG_PYLINT_VERSION: 1.5.6
+    image: muccg/linter
+
+  flake8:
+    image: muccg/linter
+    command: flake8 --help
+
+  yapf:
+    image: muccg/linter
+    command: yapf --help
+
+  gjslint:
+    image: muccg/linter
+    command: gjslint
