@@ -1,0 +1,10 @@
+#!/bin/bash
+prospector="docker run --rm \
+                    --interactive \
+                    --tty \
+                    --net "host" \
+                    -v "$(pwd):$(pwd)" \
+                    -w $(pwd)
+                    -it muccg/linter prospector"
+
+exec $prospector $*
