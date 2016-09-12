@@ -27,8 +27,7 @@ RUN addgroup -S -g 1000 linter \
 RUN apk add --no-cache bash
  
 # create a virtual env in $VIRTUAL_ENV, ensure it respects pip version
-RUN pip install $ARG_PIP_OPTS virtualenv \
-    && virtualenv $VIRTUAL_ENV \
+RUN pyvenv $VIRTUAL_ENV \
     && $VIRTUAL_ENV/bin/pip install $ARG_PIP_OPTS pip==$PYTHON_PIP_VERSION
 ENV PATH $VIRTUAL_ENV/bin:$PATH
 
