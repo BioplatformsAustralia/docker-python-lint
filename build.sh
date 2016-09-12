@@ -28,7 +28,7 @@ do
     set -x
     cd ${TOPDIR}
     cd ${pythonver} && docker-compose build ${DOCKER_COMPOSE_BUILD_OPTS} linter
-    #docker build ${DOCKER_BUILD_OPTS} -t ${image} ${pythonver}
+    docker tag ${image} ${image}-${DATE}
 
     ## for logging in CI
     docker inspect ${image}
