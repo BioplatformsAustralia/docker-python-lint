@@ -1,10 +1,10 @@
 #!/bin/bash
-pylint="docker run --rm \
+yapf="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter pylint"
+                    -it muccg/linter:python2 yapf"
 
-exec $pylint $*
+exec $yapf $*

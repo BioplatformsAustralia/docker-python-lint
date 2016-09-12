@@ -1,10 +1,10 @@
 #!/bin/bash
-yapf="docker run --rm \
+gjslint="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter yapf"
+                    -it muccg/linter:python2 gjslint"
 
-exec $yapf $*
+exec $gjslint $*

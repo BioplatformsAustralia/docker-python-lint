@@ -5,6 +5,6 @@ gjslint="docker run --rm \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter gjslint"
+                    -it muccg/linter:python3 gjslint"
 
 exec $gjslint $*

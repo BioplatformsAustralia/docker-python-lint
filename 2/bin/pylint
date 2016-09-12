@@ -1,10 +1,10 @@
 #!/bin/bash
-prospector="docker run --rm \
+pylint="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter prospector"
+                    -it muccg/linter:python2 pylint"
 
-exec $prospector $*
+exec $pylint $*
