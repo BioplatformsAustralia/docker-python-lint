@@ -8,7 +8,15 @@ This repository contains a Dockerfile for static code analysis tools (linters) f
 
 ## Installation
 
-`docker pull muccg/linter
+Python 2:
+```
+docker pull muccg/linter:python2
+```
+
+Python 3:
+```
+docker pull muccg/linter:python3
+```
 
 ## Quickstart
 
@@ -21,8 +29,7 @@ docker run -d --name linter \
     --net "host" \
     --volume "$(pwd):$(pwd)" \
     -w $(pwd) \
-    muccg/linter flake8
+    muccg/linter:python2 flake8
 ```
 
-*Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml)
-file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
+Convenience scripts in 2/bin and 3/bin for Python 2 and 3 respectively.
