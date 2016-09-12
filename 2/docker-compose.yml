@@ -1,0 +1,27 @@
+version: '2'
+services:
+
+  linter:
+    build:
+      context: ./
+      args:
+        ARG_PROSPECTOR_VERSION: 0.12.2
+        ARG_AUTOFLAKE_VERSION: 0.6.6
+        ARG_AUTOPEP8_VERSION: 1.2.4
+        ARG_FLAKE8_VERSION: 3.0.2
+        ARG_YAPF_VERSION: 0.11.0
+        ARG_CLOSURE_LINTER_VERSION: 2.3.13
+        ARG_PYLINT_VERSION: 1.6.4
+    image: muccg/linter:python2
+
+  flake8:
+    image: muccg/linter
+    command: flake8 --help
+
+  yapf:
+    image: muccg/linter
+    command: yapf --help
+
+  gjslint:
+    image: muccg/linter
+    command: gjslint

@@ -3,42 +3,40 @@
 # Script to build images
 #
 
-# break on error
-set -e
-set -x
-set -a
 : ${PROJECT_NAME:='linter'}
-: ${DOCKER_IMAGE:="muccg/${PROJECT_NAME}"}
-: ${DOCKER_USE_HUB:="0"}
+. ./lib.sh
 
-DATE=`date +%Y.%m.%d`
+set -e
 
+docker_options
 
-ci_docker_login() {
-    if [ -z ${DOCKER_EMAIL+x} ]; then
-        DOCKER_EMAIL=${bamboo_DOCKER_EMAIL}
+info "${DOCKER_BUILD_OPTS}"
+TOPDIR=${PWD}
+
+# build dirs, top level is python version
+for pythondir in 2 3
+do
+    pythonver=`basename ${pythondir}`
+
+    image="${DOCKER_IMAGE}:python${pythonver}"
+    echo "################################################################### ${image}"
+
+    ## warm up cache for CI
+    docker pull ${image} || true
+
+    ## build
+    set -x
+    cd ${TOPDIR}
+    cd ${pythonver} && docker-compose build ${DOCKER_COMPOSE_BUILD_OPTS} linter
+    #docker build ${DOCKER_BUILD_OPTS} -t ${image} ${pythonver}
+
+    ## for logging in CI
+    docker inspect ${image}
+
+    if [ ${DOCKER_USE_HUB} = "1" ]; then
+        _ci_docker_login
+        docker push ${image}-${DATE}
+        docker push ${image}
     fi
-    if [ -z ${DOCKER_USERNAME+x} ]; then
-        DOCKER_USERNAME=${bamboo_DOCKER_USERNAME}
-    fi
-    if [ -z ${DOCKER_PASSWORD+x} ]; then
-        DOCKER_PASSWORD=${bamboo_DOCKER_PASSWORD}
-    fi
-
-    docker login -e "${DOCKER_EMAIL}" -u ${DOCKER_USERNAME} --password="${DOCKER_PASSWORD}"
-}
-
-
-# warm up cache
-docker pull ${DOCKER_IMAGE}:latest || true
-
-docker-compose build linter
-docker inspect ${DOCKER_IMAGE}:latest
-
-docker tag ${DOCKER_IMAGE}:latest ${DOCKER_IMAGE}:latest-${DATE}
-
-if [ ${DOCKER_USE_HUB} = "1" ]; then
-    ci_docker_login
-    docker push ${DOCKER_IMAGE}:latest
-    docker push ${DOCKER_IMAGE}:latest-${DATE}
-fi
+    set +x
+done
