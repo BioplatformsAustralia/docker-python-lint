@@ -12,6 +12,7 @@ services:
         ARG_YAPF_VERSION: 0.11.1
         ARG_CLOSURE_LINTER_VERSION: 2.3.13
         ARG_PYLINT_VERSION: 1.6.4
+        ARG_RADON_VERSION: 1.4.2
     image: muccg/linter:python3
 
   flake8:
