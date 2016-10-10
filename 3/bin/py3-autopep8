@@ -1,0 +1,10 @@
+#!/bin/bash
+autopep8="docker run --rm \
+                    --interactive \
+                    --tty \
+                    --net "host" \
+                    -v "$(pwd):$(pwd)" \
+                    -w $(pwd)
+                    -it muccg/linter:python3 autopep8"
+
+exec $autopep8 $*
