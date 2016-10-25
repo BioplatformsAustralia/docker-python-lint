@@ -5,7 +5,7 @@ services:
     build:
       context: ./
       args:
-        ARG_PROSPECTOR_VERSION: 0.12.2
+        ARG_PROSPECTOR_VERSION: 0.12.4
         ARG_AUTOFLAKE_VERSION: 0.6.6
         ARG_AUTOPEP8_VERSION: 1.2.4
         ARG_FLAKE8_VERSION: 3.0.4
