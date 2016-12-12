@@ -36,7 +36,7 @@ RUN pyvenv $VIRTUAL_ENV \
 ENV PATH $VIRTUAL_ENV/bin:$PATH
 
 RUN env | sort
-RUN NO_PROXY=${PIP_TRUSTED_HOST} pip install --upgrade \
+RUN pip install --upgrade \
     "autoflake==$AUTOFLAKE_VERSION" \
     "autopep8==$AUTOPEP8_VERSION" \
     "closure-linter==$CLOSURE_LINTER_VERSION" \
