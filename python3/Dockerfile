@@ -1,5 +1,5 @@
 #
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 LABEL maintainer "https://github.com/muccg/"
 
 ARG ARG_PIP_INDEX_URL="https://pypi.python.org/simple"
@@ -31,7 +31,7 @@ RUN addgroup -S -g 1000 linter \
     && adduser -D -S -u 1000 -h /data -s /sbin/nologin -G linter linter
 
 # create a virtual env in $VIRTUAL_ENV, ensure it respects pip version
-RUN python3.6 -m venv $VIRTUAL_ENV \
+RUN python3.7 -m venv $VIRTUAL_ENV \
     && $VIRTUAL_ENV/bin/pip install --upgrade pip==$PYTHON_PIP_VERSION
 ENV PATH $VIRTUAL_ENV/bin:$PATH
 
