@@ -1,4 +1,4 @@
-docker-linter
+docker-python-lint
 =============
 
 This repository contains a Dockerfile for static code analysis tools (linters) for Django projects.
@@ -8,14 +8,9 @@ This repository contains a Dockerfile for static code analysis tools (linters) f
 
 ## Installation
 
-Python 2:
-```
-docker pull muccg/linter:python2
-```
-
 Python 3:
 ```
-docker pull muccg/linter:python3
+docker pull bioplatformsaustralia/python-lint:python3
 ```
 
 ## Quickstart
@@ -29,7 +24,6 @@ docker run -d --name linter \
     --net "host" \
     --volume "$(pwd):$(pwd)" \
     -w $(pwd) \
-    muccg/linter:python2 flake8
+    bioplatformsaustralia/python-lint:python3 flake8
 ```
 
-Convenience scripts in 2/bin and 3/bin for Python 2 and 3 respectively.

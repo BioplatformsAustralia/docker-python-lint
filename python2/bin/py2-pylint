@@ -1,9 +1,0 @@
-#!/bin/bash
-pylint="docker run --rm \
-                    --interactive \
-                    --tty \
-                    -v "$(pwd):$(pwd)" \
-                    -w $(pwd)
-                    -it muccg/linter:python2 pylint"
-
-exec $pylint $*

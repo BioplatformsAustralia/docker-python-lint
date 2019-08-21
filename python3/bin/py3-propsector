@@ -4,6 +4,6 @@ prospector="docker run --rm \
                     --tty \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python3 prospector"
+                    -it bioplatformsaustralia/python-lint:python3 prospector"
 
 exec $prospector $*

@@ -1,9 +1,0 @@
-#!/bin/bash
-radon="docker run --rm \
-                    --interactive \
-                    --tty \
-                    -v "$(pwd):$(pwd)" \
-                    -w $(pwd)
-                    -it muccg/linter:python2 radon"
-
-exec $radon $*

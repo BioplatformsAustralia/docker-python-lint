@@ -4,6 +4,6 @@ flake8="docker run --rm \
                     --tty \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python3 flake8"
+                    -it bioplatformsaustralia/python-lint:python3 flake8"
 
 exec $flake8 $*

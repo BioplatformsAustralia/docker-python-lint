@@ -4,6 +4,6 @@ pylint="docker run --rm \
                     --tty \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python3 pylint"
+                    -it bioplatformsaustralia/python-lint:python3 pylint"
 
 exec $pylint $*

@@ -1,9 +1,0 @@
-#!/bin/bash
-flake8="docker run --rm \
-                    --interactive \
-                    --tty \
-                    -v "$(pwd):$(pwd)" \
-                    -w $(pwd)
-                    -it muccg/linter:python2 flake8"
-
-exec $flake8 $*

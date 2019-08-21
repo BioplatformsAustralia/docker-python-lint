@@ -5,29 +5,16 @@ services:
     build:
       context: ${CCG_CONTEXT}
       dockerfile: Dockerfile
-      args:
-        ARG_PIP_INDEX_URL: ${PIP_INDEX_URL}
-        ARG_PIP_TRUSTED_HOST: ${PIP_TRUSTED_HOST}
-        http_proxy:
-        ARG_PROSPECTOR_VERSION: ${DOCKER_PROSPECTOR_VERSION}
-        ARG_AUTOFLAKE_VERSION: ${DOCKER_AUTOFLAKE_VERSION}
-        ARG_AUTOPEP8_VERSION: ${DOCKER_AUTOPEP8_VERSION}
-        ARG_FLAKE8_VERSION: ${DOCKER_FLAKE8_VERSION}
-        ARG_YAPF_VERSION: ${DOCKER_YAPF_VERSION}
-        ARG_PY2LINT_VERSION: ${DOCKER_PY2LINT_VERSION}
-        ARG_PY3LINT_VERSION: ${DOCKER_PY3LINT_VERSION}
-        ARG_RADON_VERSION: ${DOCKER_RADON_VERSION}
-        ARG_XENON_VERSION: ${DOCKER_XENON_VERSION}
-    image: muccg/${CCG_PROJECT}:${GIT_BRANCH}-${CCG_PATH_TAG}
+    image: bioplatformsaustralia/${CCG_PROJECT}:${GIT_BRANCH}-${CCG_PATH_TAG}
 
   prod:
     extends:
       file: docker-compose-build.yml
       service: dev
-    image: muccg/${CCG_PROJECT}:${CCG_PATH_TAG}
+    image: bioplatformsaustralia/${CCG_PROJECT}:${CCG_PATH_TAG}
 
   prod-date:
     extends:
       file: docker-compose-build.yml
       service: dev
-    image: muccg/${CCG_PROJECT}:${CCG_PATH_TAG}-${CCG_BUILD_DATE}
+    image: bioplatformsaustralia/${CCG_PROJECT}:${CCG_PATH_TAG}-${CCG_BUILD_DATE}
