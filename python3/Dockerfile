@@ -1,5 +1,5 @@
 #
-FROM python:3.7-slim
+FROM python:3.8-slim
 LABEL maintainer "https://github.com/bioplatformsaustralia/"
 
 RUN addgroup --gid 1000 linter \
